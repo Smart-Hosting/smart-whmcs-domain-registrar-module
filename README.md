@@ -1,0 +1,1 @@
+# smart-whmcs-domain-reseller-module
