@@ -61,7 +61,7 @@ class API
 		$cURL = curl_init();
 		
 		// Set url
-		curl_setopt($cURL, CURLOPT_URL, "https://my.smarthosting.co.uk/api/1/{$route}?" . http_build_query($url_params));
+		curl_setopt($cURL, CURLOPT_URL, "https://www.bestwebhosting.co.uk/api/1/{$route}?" . http_build_query($url_params));
 		
 		// Set method
 		curl_setopt($cURL, CURLOPT_CUSTOMREQUEST, "POST");
