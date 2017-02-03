@@ -170,7 +170,8 @@ function smarthosting_TransferDomain($params)
 				"term" => $params["regperiod"],
 				"order_type" => "transfer",
 				"additional_fields" => $params["additionalfields"],
-				"nameservers" => [$params["ns1"], $params["ns2"], $params["ns3"], $params["ns4"]]
+				"nameservers" => [$params["ns1"], $params["ns2"], $params["ns3"], $params["ns4"]],
+				"epp_code" => $params["eppcode"]
 			],
 			
 			"contact_details" =>
