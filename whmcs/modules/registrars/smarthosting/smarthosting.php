@@ -130,7 +130,8 @@ function smarthosting_RegisterDomain($params)
 				"term" => $params["regperiod"],
 				"order_type" => "registration",
 				"additional_fields" => $params["additionalfields"],
-				"nameservers" => [$params["ns1"], $params["ns2"], $params["ns3"], $params["ns4"]]
+				"nameservers" => [$params["ns1"], $params["ns2"], $params["ns3"], $params["ns4"]],
+				"id_protection" => (($params["idprotection"]) ? true : false) 
 			],
 			
 			"contact_details" =>
@@ -171,7 +172,8 @@ function smarthosting_TransferDomain($params)
 				"order_type" => "transfer",
 				"additional_fields" => $params["additionalfields"],
 				"nameservers" => [$params["ns1"], $params["ns2"], $params["ns3"], $params["ns4"]],
-				"epp_code" => $params["eppcode"]
+				"epp_code" => $params["eppcode"],
+				"id_protection" => (($params["idprotection"]) ? true : false) 
 			],
 			
 			"contact_details" =>
