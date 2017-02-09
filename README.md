@@ -3,6 +3,17 @@
 ## About
 This is a custom WHMCS module built for our resellers who would like to register domains directly though [us] (https://smarthosting.co.uk).
 
+## Upgrading from our old module
+If you've been running our old domain registrar module (pre February 2017), you'll need to do a few extra things.
+
+1. Follow the installation instructions below
+2. Deactivate and delete the old registrar module, which is called `SmarthostingAPI`
+3. Run the followoing SQL on your WHMCS database:
+```
+UPDATE `tbldomains` SET `registrar` = 'smarthosting' WHERE `registrar` LIKE 'smarthostingapi';
+UPDATE `tbldomainpricing` SET `autoreg` = 'smarthosting' WHERE `autoreg` LIKE 'smarthostingapi';
+```
+
 ## Installation
 1. Download the module via the following [link](https://github.com/Smart-Hosting/smart-whmcs-domain-registrar-module/releases/latest)
 1. Copy the `smarthosting` directory into the respective WHMCS directory in your WHMCS setup: `/whmcs/modules/registrars/`
