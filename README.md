@@ -8,7 +8,7 @@ If you've been running our old domain registrar module (pre February 2017), you'
 
 1. Follow the installation instructions below
 2. Deactivate and delete the old registrar module, which is called `SmarthostingAPI`
-3. Run the followoing SQL on your WHMCS database using phpMyAdmin (found in your cPanel):
+3. Run the following SQL on your WHMCS database using phpMyAdmin (found in your cPanel):
 ```
 UPDATE `tbldomains` SET `registrar` = 'smarthosting' WHERE `registrar` LIKE 'smarthostingapi';
 UPDATE `tbldomainpricing` SET `autoreg` = 'smarthosting' WHERE `autoreg` LIKE 'smarthostingapi';
