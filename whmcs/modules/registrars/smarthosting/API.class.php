@@ -52,6 +52,8 @@ class API
 	
 	public function call($route, $method, $url_params = [], $body = [], $options = [])
 	{
+		$excludedFromLogging = [];
+		
 		$options = array_merge(
 		[
 			"authenticated_request" => true
@@ -72,8 +74,15 @@ class API
 		// Set headers
 		$headers = [];
 		$headers[] = "X-HTTP-Method-Override: {$method}";
-		if($options["authenticated_request"]) $headers[] = "Authorization: Basic " . base64_encode($this->_username() . ":" . $this->_password());
 		$headers[] = "Content-Type: application/json; charset=utf-8";
+		
+		if($options["authenticated_request"])
+		{
+			$authHeaderValue = base64_encode($this->_username() . ":" . $this->_password());
+			$excludedFromLogging[] = $authHeaderValue;
+			$headers[] = "Authorization: Basic {$authHeaderValue}";
+		}
+		
 		curl_setopt($cURL, CURLOPT_HTTPHEADER, $headers);
 		
 		// Create body
@@ -92,6 +101,9 @@ class API
 		// Get the body
 		$response = json_decode($response, true);
 		$response["http_code"] = curl_getinfo($cURL, CURLINFO_HTTP_CODE);
+		
+		// Log the result
+		\logModuleCall("smarthosting", "{$method} {$route}", ["params" => $url_params, "body" => $body, "options" => $options, "headers" => $headers], null, ["response" => $response], $excludedFromLogging);
 		
 		// Check the response code
 		$responseonseCode = (string)$response["http_code"];
